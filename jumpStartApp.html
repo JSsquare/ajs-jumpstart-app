@@ -25,24 +25,28 @@ app.controller("myCtrl", function($scope) {
 </script>
 
 <div ng-app="myShoppingList" ng-controller="myCtrl" class="container-fluid" style="max-width:500px;">
-  <header class="page-header">
-    <h3>Shopping List</h3>
-  </header>
+
+    <h3 class="page-header">Shopping List</h3>
+
     
   <div class="panel panel-default">      
       <ul class="list-group">
         <li ng-repeat="x in products" class="list-group-item">{{x}}<span ng-click="removeItem($index)" style="cursor:pointer;">
-        <button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+        <button type="button" class="close">
+        <span>&times;</span>
        </button>
         </span></li>
       </ul>
-      <div class="w3-container w3-light-grey w3-padding-16">
+      <div>
             <input placeholder="Add shopping items here" ng-model="addMe" class="form-control">
             <button ng-click="addItem()" class="btn-primary">Add</button>                  
         <p class="alert-danger">{{errortext}}</p>
       </div>
     </div>
+
+    <!--<input placeholder="I will print as you type here" ng-model="realTime" class="form-control">
+    {{realTime}}-->
+
 
 </div>
     
