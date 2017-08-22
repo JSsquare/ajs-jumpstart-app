@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+
+<script>
+var app = angular.module("myShoppingList", []); 
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Biriyani", "Booze", "Cake"];
+    $scope.addItem = function () {
+        $scope.errortext = "";
+        if (!$scope.addMe) {return;}
+        if ($scope.products.indexOf($scope.addMe) == -1) {
+            $scope.products.push($scope.addMe);
+        } else {
+            $scope.errortext = "The item is already added";
+        }
+    }
+    $scope.removeItem = function (x) {
+        $scope.errortext = "";    
+        $scope.products.splice(x, 1);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl" class="container-fluid" style="max-width:500px;">
+  <header class="page-header">
+    <h3>Shopping List</h3>
+  </header>
+    
+  <div class="panel panel-default">      
+      <ul class="list-group">
+        <li ng-repeat="x in products" class="list-group-item">{{x}}<span ng-click="removeItem($index)" style="cursor:pointer;">
+        <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+       </button>
+        </span></li>
+      </ul>
+      <div class="w3-container w3-light-grey w3-padding-16">
+            <input placeholder="Add shopping items here" ng-model="addMe" class="form-control">
+            <button ng-click="addItem()" class="btn-primary">Add</button>                  
+        <p class="alert-danger">{{errortext}}</p>
+      </div>
+    </div>
+
+</div>
+    
+</body>
+</html>
